@@ -15,7 +15,10 @@ class App extends Component {
     }
     this.state = {
       loggedIn: token ? true : false,
-      nowPlaying: {name: 'Not Checked', albumArt: '' }
+      nowPlaying: {
+        artist: 'Not Checked',
+        song: 'Not Checked', 
+        albumArt: '' }
     }
   }
   getHashParams() {
@@ -33,9 +36,11 @@ class App extends Component {
   getNowPlaying() {
     spotifyApi.getMyCurrentPlaybackState()
     .then((response) => {
+      console.log(response)
       this.setState({
         nowPlaying: {
-          name: response.item.name,
+          artist: response.item.artists[0].name,
+          song: response.item.name,
           albumArt: response.item.album.images[0].url
         }
       });
@@ -47,7 +52,10 @@ class App extends Component {
       <div className='App'>
         <a href='http://localhost:8888'> Login to Spotify </a>
         <div> 
-          Now Playing: { this.state.nowPlaying.name }
+          Now Playing:
+        </div>
+        <div>
+          { this.state.nowPlaying.artist } - { this.state.nowPlaying.song }
         </div>
         <div>
           <img src={ this.state.nowPlaying.albumArt } style={{ height: 150 }} />
