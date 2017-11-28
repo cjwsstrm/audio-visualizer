@@ -49,14 +49,14 @@ class App extends Component {
   
   render() {
     return (
-      <div className='App'>
+      <div>
         <a href='http://localhost:8888'> Login to Spotify </a>
-        <div> 
+        <h1> 
           Now Playing:
-        </div>
-        <div>
+        </h1>
+        <h2>
           { this.state.nowPlaying.artist } - { this.state.nowPlaying.song }
-        </div>
+        </h2>
         <div>
           <img src={ this.state.nowPlaying.albumArt } style={{ height: 150 }} />
         </div>
