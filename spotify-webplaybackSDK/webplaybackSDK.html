@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Spotify Web Playback SDK Quick Start Tutorial</title>
+</head>
+
+<body>
+  <h1>Spotify Web Playback SDK Quick Start Tutorial</h1>
+  <h2>Open your console log:
+    <code>View > Developer > JavaScript Console</code>
+  </h2>
+  <button onclick="togglePlay()">toggle</button>
+
+  <script src="https://sdk.scdn.co/spotify-player.js"></script>
+  <script>
+    window.onSpotifyPlayerAPIReady = () => {
+      const token = 'BQBRvAQept4qlvgbq7rWdP9TQOsNP9k8f5c1a3VVuUaMAoqSUFcC-vVIhT3JOvsUjSgT9cFKS1AL1SrB7EyjsT_OhDPrxZ5z40ZlbME4kjFpZYoje72eQo3YB3rJlJgFy1TdD2_1NR9jqxMblTKWHXAzD2n-qGZ2ndxekg';
+      const player = new Spotify.Player({
+        name: 'Web Playback SDK Quick Start Player',
+        getOAuthToken: cb => { cb(token); }
+      });
+
+      function togglePlay() {
+    player.pause();
+  }
+      // Error handling
+      player.on('initialization_error', e => console.error(e));
+      player.on('authentication_error', e => console.error(e));
+      player.on('account_error', e => console.error(e));
+      player.on('playback_error', e => console.error(e));
+
+      // Playback status updates
+      player.on('player_state_changed', state => console.log(state));
+
+      // Ready
+      player.on('ready', data => {
+        console.log('Ready with Device ID', data.device_id);
+      });
+
+      // Connect to the player!
+      player.connect();
+    }
+    </script>
+</body>
+
+</html>
