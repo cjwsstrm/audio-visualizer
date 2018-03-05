@@ -11,4 +11,4 @@ https://medium.com/@jonnyk20/now-playing-using-spotifys-awesome-api-with-react-7
 
 --- Abandoned --- 
 
-See cjwsstrm/music-player for a more focused project / version.
+See https://github.com/cjwsstrm/music-player for a more focused project / version.
